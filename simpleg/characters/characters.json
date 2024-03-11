@@ -1,0 +1,52 @@
+{
+    "player": {
+        "name": "Player",
+        "class": "Adventurer",
+        "level": 1,
+        "experience": 0,
+        "health": 100,
+        "mana": 50,
+        "strength": 10,
+        "dexterity": 5,
+        "intelligence": 3,
+        "equipment": {
+            "weapon": null,
+            "armor": "Ragged Clothing"
+        },
+        "inventory": []
+    },
+    "stranger": {
+        "name": "Stranger",
+        "description": "The Stranger is an enigmatic figure who appears to have knowledge of the city and its current state. He is unkillable and serves as a guide for the player at the beginning of the game.",
+        "health": "Infinity",
+        "dialogue": [
+            "Welcome, traveler. You seem lost. Allow me to shed some light on your predicament."
+        ]
+    },
+    "refugees": [
+        {
+            "name": "Refugee",
+            "description": "A refugee fleeing the chaos in the city. They are scared and desperate for safety.",
+            "health": 20,
+            "dialogue": [
+                "Please, help us. The Majis are hunting us down like animals."
+            ]
+        },
+        {
+            "name": "Refugee Child",
+            "description": "A small child who has lost their family in the chaos. They cling to you, seeking comfort.",
+            "health": 10,
+            "dialogue": [
+                "Where's my mommy? I'm scared."
+            ]
+        }
+    ],
+    "inquisitor_geld": {
+        "name": "Inquisitor Geld",
+        "description": "A high-ranking member of the Sancta Trinitas Inquisition. He appears to be among the refugees, perhaps seeking to escape the chaos.",
+        "health": 50,
+        "dialogue": [
+            "I never thought I'd see the day when the Inquisitor sought refuge with the common folk."
+        ]
+    }
+}

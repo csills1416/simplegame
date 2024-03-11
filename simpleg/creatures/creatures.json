@@ -33,13 +33,5 @@
         "dexterity": 6,
         "hp": 30,
         "weaknesses": ["fire"]
-    },
-    "Stranger": {
-        "name": "Stranger",
-        "strength": 99,
-        "dexterity": 99,
-        "Bri": 99,
-        "hp": 99999999,
-        "weaknesses": []
     }
 }
