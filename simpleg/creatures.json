@@ -1,0 +1,45 @@
+{
+    "rodent_of_unusual_size": {
+        "name": "ROUS: Rat",
+        "strength": 5,
+        "dexterity": 5,
+        "hp": 5,
+        "weaknesses": ["fire"]
+    },
+    "giant_spider": {
+        "name": "Giant Spider",
+        "strength": 15,
+        "dexterity": 8,
+        "hp": 25,
+        "weaknesses": ["ice"]
+    },
+    "thralled_peasant": {
+        "name": "Thralled Peasant",
+        "strength": 10,
+        "dexterity": 5,
+        "hp": 15,
+        "weaknesses": ["bludgeoning","fire","ice"]
+    },
+    "skeleton": {
+        "name": "Skeleton",
+        "strength": 12,
+        "dexterity": 7,
+        "hp": 20,
+        "weaknesses": ["bludgeoning"]
+    },
+    "orc": {
+        "name": "Orc",
+        "strength": 18,
+        "dexterity": 6,
+        "hp": 30,
+        "weaknesses": ["fire"]
+    },
+    "Stranger": {
+        "name": "Stranger",
+        "strength": 99,
+        "dexterity": 99,
+        "Bri": 99,
+        "hp": 99999999,
+        "weaknesses": []
+    }
+}
