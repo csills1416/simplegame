@@ -1,5 +1,6 @@
 import json
 import random
+import magic  # Import the magic module
 
 # Load creature data from creatures.json
 with open('creatures.json', 'r') as f:
