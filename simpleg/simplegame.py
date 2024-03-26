@@ -26,62 +26,34 @@ def get_ai_response(prompt):
 
 def move(direction):
     # Example movement function
-    if direction == "right":
-        game_state["player_location"] = "city_streets"
-        print("You head towards the city streets.")
-    elif direction == "left":
-        game_state["player_location"] = "refugees"
-        print("You head towards the group of refugees.")
+    if direction == "west":
+        game_state["player_location"] = "city_west"
+        print("You head towards the western exit of the sewer.")
+    elif direction == "east":
+        game_state["player_location"] = "city_east"
+        print("You head towards the eastern exit of the sewer.")
     else:
         print("You can't go that way.")
 
-def generate_encounter():
-    # Generate a random encounter with a creature
-    creature_name = random.choice(list(creature_data.keys()))
+def generate_encounter(location):
+    # Generate a random encounter with a creature based on location
+    if location == "sewer":
+        creature_name = random.choice(["giant_rat", "sewer_goblin"])
+    elif location == "city_west":
+        creature_name = random.choice(["bandit", "refugee_group"])
+    elif location == "city_east":
+        creature_name = random.choice(["giant_spider", "skeleton_warrior"])
     creature_stats = creature_data[creature_name]
     return creature_name, creature_stats
 
-# Combat system
-def initialize_battle(player_party, enemy_party):
-    # Initialize battle, set up initial conditions
-    pass
-
-def player_turn(player_party, enemy_party):
-    # Handle player's turn
-    pass
-
-def enemy_turn(player_party, enemy_party):
-    # Handle enemy's turn
-    pass
-
-def resolve_actions(player_party, enemy_party):
-    # Resolve actions, calculate damage, etc.
-    pass
-
-# Example friendly NPC
-friendly_npc = {
-    "name": "Inquisitor Geld",
-    "location": "sewer",
-    "dialogue": [
-        "You see a figure huddled in the corner. As you approach, you recognize the distinctive robes of an Inquisitor.",
-        "Inquisitor Geld looks up, his eyes wary. 'Who goes there?' he demands.",
-        "You explain your situation, and Inquisitor Geld nods. 'I too seek to escape this madness. Perhaps we can help each other.'"
-    ],
-    "quest": "Inquisitor Geld asks you to retrieve his confiscated spellbook from the Inquisitorial headquarters."
-}
-
-def interact_with_npc(npc):
-    for dialogue_line in npc["dialogue"]:
-        print(dialogue_line)
-    
-    if "quest" in npc:
-        print("Quest:", npc["quest"])
-        accept_quest = input("Do you accept the quest? (yes/no) ")
-        if accept_quest.lower() == "yes":
-            print("You have accepted the quest.")
-            # Perform quest-related actions
-        else:
-            print("You decline the quest.")
+# Combat system (simplified)
+def battle(player_stats, creature_stats):
+    # Simulated battle, just deduct health for now
+    player_damage = random.randint(1, player_stats["strength"])
+    creature_damage = random.randint(1, creature_stats["strength"])
+    player_stats["hp"] -= creature_damage
+    creature_stats["hp"] -= player_damage
+    return player_stats, creature_stats
 
 # Main game loop
 while True:
@@ -100,6 +72,7 @@ while True:
         # Explain the objective
         print("Stranger: Well, let me fill you in. The city's in chaos. The Black Rose Society struck hard, and now it's every man for himself.")
         print("Stranger: You look lost, friend. If you're smart, you'll head west. Maybe my old comrades managed to escape. As for me, I'm done with this city.")
+        print("Stranger: If you're feeling brave, you could head east. The monsters there are tougher, but the rewards might be worth it.")
 
         # Update game state to prompt the player to explore
         game_state["objective"] = "Leave the sewers and escape the city."
@@ -108,22 +81,20 @@ while True:
     player_input = input("What do you do? ")
     if player_input.lower() == "quit":
         break
-    elif player_input.lower() in ["right", "left"]:
+    elif player_input.lower() in ["west", "east"]:
         move(player_input.lower())
-    elif player_input.lower() == "explore":
-        # Check if the player has achieved the objective
-        if "objective" in game_state and game_state["player_location"] != "sewer":
-            print("You successfully escaped the city. Congratulations!")
+        # Generate a random encounter
+        creature_name, creature_stats = generate_encounter(game_state["player_location"])
+        print(f"You encounter a {creature_name}!")
+        # Simulated battle
+        player_stats, creature_stats = battle(player_stats, creature_stats)
+        print(f"You defeated the {creature_name}!")
+        # Update player stats and game state
+        game_state["inventory"].append(creature_name)
+        if player_stats["hp"] <= 0:
+            print("You have been defeated. Game Over.")
             break
-        else:
-            print("You can't do that right now.")
-    elif player_input.lower() == "talk":
-        # Interact with the friendly NPC
-        if game_state["player_location"] == friendly_npc["location"]:
-            interact_with_npc(friendly_npc)
-        else:
-            print("There is no one to talk to here.")
+    elif player_input.lower() == "explore":
+        print("You can't explore here. Choose a direction to move.")
     else:
         print("You can't do that right now.")
-
-
