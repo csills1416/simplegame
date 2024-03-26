@@ -58,6 +58,31 @@ def resolve_actions(player_party, enemy_party):
     # Resolve actions, calculate damage, etc.
     pass
 
+# Example friendly NPC
+friendly_npc = {
+    "name": "Inquisitor Geld",
+    "location": "sewer",
+    "dialogue": [
+        "You see a figure huddled in the corner. As you approach, you recognize the distinctive robes of an Inquisitor.",
+        "Inquisitor Geld looks up, his eyes wary. 'Who goes there?' he demands.",
+        "You explain your situation, and Inquisitor Geld nods. 'I too seek to escape this madness. Perhaps we can help each other.'"
+    ],
+    "quest": "Inquisitor Geld asks you to retrieve his confiscated spellbook from the Inquisitorial headquarters."
+}
+
+def interact_with_npc(npc):
+    for dialogue_line in npc["dialogue"]:
+        print(dialogue_line)
+    
+    if "quest" in npc:
+        print("Quest:", npc["quest"])
+        accept_quest = input("Do you accept the quest? (yes/no) ")
+        if accept_quest.lower() == "yes":
+            print("You have accepted the quest.")
+            # Perform quest-related actions
+        else:
+            print("You decline the quest.")
+
 # Main game loop
 while True:
     # Introductory section
@@ -92,6 +117,13 @@ while True:
             break
         else:
             print("You can't do that right now.")
+    elif player_input.lower() == "talk":
+        # Interact with the friendly NPC
+        if game_state["player_location"] == friendly_npc["location"]:
+            interact_with_npc(friendly_npc)
+        else:
+            print("There is no one to talk to here.")
     else:
         print("You can't do that right now.")
+
 
