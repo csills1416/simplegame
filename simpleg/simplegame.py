@@ -67,9 +67,17 @@ while True:
         print("The stranger's face is hidden behind a hood. He's poking the wood on the fire with a rusty sword, making sure it doesn't go out.")
         print("The stranger notices you are awake. He places the rusty sword by his side and looks at you.")
         print("Stranger: You're awake. For a second there I thought that Maji had scrambled your brains. Can you speak? Did he scramble that noggin' of yours?")
+
         # Use mock AI to generate response
         ai_response = get_ai_response("The stranger asks if you know what's happened in the city.")
         print("Stranger:", ai_response)
+
+        # Explain the objective
+        print("Stranger: Well, let me fill you in. The city's in chaos. The Black Rose Society struck hard, and now it's every man for himself.")
+        print("Stranger: You look lost, friend. If you're smart, you'll head west. Maybe my old comrades managed to escape. As for me, I'm done with this city.")
+
+        # Update game state to prompt the player to explore
+        game_state["objective"] = "Leave the sewers and escape the city."
 
     # Handle player input
     player_input = input("What do you do? ")
@@ -78,13 +86,12 @@ while True:
     elif player_input.lower() in ["right", "left"]:
         move(player_input.lower())
     elif player_input.lower() == "explore":
-        # Generate a random encounter
-        creature_name, creature_stats = generate_encounter()
-        print(f"You encounter a {creature_name}!")
-        # Combat Flow not fully implemented yet
-        initialize_battle(player_stats, creature_stats)
-        player_turn(player_stats, creature_stats)
-        enemy_turn(player_stats, creature_stats)
-        resolve_actions(player_stats, creature_stats)
+        # Check if the player has achieved the objective
+        if "objective" in game_state and game_state["player_location"] != "sewer":
+            print("You successfully escaped the city. Congratulations!")
+            break
+        else:
+            print("You can't do that right now.")
     else:
         print("You can't do that right now.")
+
