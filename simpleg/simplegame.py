@@ -14,13 +14,7 @@ player_stats = {
     "dexterity": 5
 }
 
-def generate_encounter():
-    # Generate a random encounter with a creature
-    creature_name = random.choice(list(creature_data.keys()))
-    creature_stats = creature_data[creature_name]
-    return creature_name, creature_stats
-
-# Example game state
+# Game Location for Player
 game_state = {
     "player_location": "sewer",
     "inventory": []
@@ -29,6 +23,23 @@ game_state = {
 def get_ai_response(prompt):
     # Mock AI response for simplicity
     return "I'm just a simple text-based AI."
+
+def move(direction):
+    # Example movement function
+    if direction == "right":
+        game_state["player_location"] = "city_streets"
+        print("You head towards the city streets.")
+    elif direction == "left":
+        game_state["player_location"] = "refugees"
+        print("You head towards the group of refugees.")
+    else:
+        print("You can't go that way.")
+
+def generate_encounter():
+    # Generate a random encounter with a creature
+    creature_name = random.choice(list(creature_data.keys()))
+    creature_stats = creature_data[creature_name]
+    return creature_name, creature_stats
 
 # Combat system
 def initialize_battle(player_party, enemy_party):
@@ -64,11 +75,13 @@ while True:
     player_input = input("What do you do? ")
     if player_input.lower() == "quit":
         break
+    elif player_input.lower() in ["right", "left"]:
+        move(player_input.lower())
     elif player_input.lower() == "explore":
         # Generate a random encounter
         creature_name, creature_stats = generate_encounter()
         print(f"You encounter a {creature_name}!")
-        # Example combat flow (not fully implemented)
+        # Combat Flow not fully implemented yet
         initialize_battle(player_stats, creature_stats)
         player_turn(player_stats, creature_stats)
         enemy_turn(player_stats, creature_stats)
