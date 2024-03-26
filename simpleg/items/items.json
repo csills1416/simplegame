@@ -1,0 +1,58 @@
+{
+    "weapons": {
+        "rusty_sword": {
+            "name": "Rusty Sword",
+            "damage": 5
+        },
+        "iron_axe": {
+            "name": "Iron Axe",
+            "damage": 8
+        },
+        "steel_dagger": {
+            "name": "Steel Dagger",
+            "damage": 10
+        }
+    },
+    "equipment": {
+        "leather_armor": {
+            "name": "Leather Armor",
+            "defense": 5
+        },
+        "iron_helmet": {
+            "name": "Iron Helmet",
+            "defense": 3
+        },
+        "steel_shield": {
+            "name": "Steel Shield",
+            "defense": 7
+        }
+    },
+    "potions": {
+        "health_potion": {
+            "name": "Health Potion",
+            "healing": 20
+        },
+        "mana_potion": {
+            "name": "Mana Potion",
+            "restore_mana": 20
+        },
+        "strength_potion": {
+            "name": "Strength Potion",
+            "increase_strength": 5
+        }
+    },
+    "other": {
+        "key": {
+            "name": "Key",
+            "description": "Opens a locked door."
+        },
+        "map": {
+            "name": "Map",
+            "description": "Reveals part of the dungeon layout."
+        },
+        "torch": {
+            "name": "Torch",
+            "description": "Provides light in dark areas."
+        }
+    }
+}
